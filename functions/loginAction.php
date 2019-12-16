@@ -20,8 +20,12 @@ if( !empty($_POST["pseudo"]) && !empty($_POST["password"]) ){
 
     $result = $req->fetch(PDO::FETCH_ASSOC);
 
-    var_dump($result);
-
-    
-    
+    if($result === false){
+        $message = "User not exist";
+        header("Location: ../login.php?message=$message");
+    }else{
+        session_start();
+        $_SESSION["pseudo"] = $result["pseudo"];
+        header("Location: ../profils.php");   
+    }
 }
