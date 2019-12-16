@@ -1,11 +1,16 @@
 <?php
     require("head.php");
 
-    // Si session pseudo vide
-        // rediriger vers login
+    if( empty($_SESSION) ){
+        header("Location: login.php");
+    }
 ?>
 
 <a href="functions/disconnect.php">Disconnect</a>
+
+<!-- ************************************ -->
+<!-- Afficher les utilisateurs -->
+<!-- ************************************ -->
 
 <?php
 echo "Bonjour " . $_SESSION["pseudo"];
