@@ -9,26 +9,23 @@
 
 <a href="functions/disconnect.php">Disconnect</a>
 
-<!-- ************************************ -->
-<!-- Afficher les utilisateurs stocké dans la BDD sauf moi -->
-<!-- ************************************ -->
-
-
 <div class="users">
     <?php
     // 1 : connect to database
     require("functions/database.php");
     // 2 : prepare request (SELECT)
-    $req = $db->prepare("SELECT pseudo FROM users WHERE pseudo <> :pseudo");
+    $req = $db->prepare("SELECT id, pseudo FROM users WHERE pseudo <> :pseudo");
     $req->bindParam(":pseudo", $_SESSION["pseudo"]);
     // 3 : execute
     $req->execute();
     // 4 : boucle
     while($result = $req->fetch(PDO::FETCH_ASSOC)){
-        // var_dump($result["pseudo"]);
-        if( $_SESSION["pseudo"] != $result["pseudo"] ){
-            echo "<h2>" . $result["pseudo"] . "</h2>";
-        }
+        ?>
+            <div>
+                <strong><?= $result["pseudo"] ?></strong>
+                <a href="functions/deleteUser.php?user_id=<?php echo $result["id"]; ?>">Supprimer</a>
+            </div>
+        <?php
     }
     ?>
 </div>
