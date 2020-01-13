@@ -16,6 +16,7 @@ if( empty($_POST["pseudo"]) && empty($_POST["password"]) ){
 
 if( !empty($_POST["password"]) && !empty($_POST["confirmPassword"]) && !empty($_POST["pseudo"])){
     if($_POST["password"] === $_POST["confirmPassword"] ){
+        
         $req = $db->prepare("INSERT INTO users (pseudo, password) VALUES(:pseudo, :password)");
         $req->bindParam(":pseudo", $_POST["pseudo"]);
         $req->bindParam(":password", $_POST["password"]);
