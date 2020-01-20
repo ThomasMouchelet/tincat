@@ -19,12 +19,13 @@
     // 3 : execute
     $req->execute();
     // 4 : boucle
-    
+
     while($result = $req->fetch(PDO::FETCH_ASSOC)){
         ?>
             <div>
                 <strong><?= $result["pseudo"] ?></strong>
                 <a href="functions/deleteUser.php?user_id=<?php echo $result["id"]; ?>">Supprimer</a>
+                <a href="userEditForm.php?user_id=<?php echo $result["id"]; ?>">Editer</a>
             </div>
         <?php
     }
