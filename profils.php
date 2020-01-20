@@ -19,6 +19,7 @@
     // 3 : execute
     $req->execute();
     // 4 : boucle
+    
     while($result = $req->fetch(PDO::FETCH_ASSOC)){
         ?>
             <div>
